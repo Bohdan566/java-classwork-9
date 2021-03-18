@@ -9,11 +9,15 @@ import java.util.List;
 
 public interface UserService {
 
-    void save(User user);
+    void save(String mail, String password, String firstname, String lastname, int age, MultipartFile avatar);
 
     List<User> findAll();
 
     User findById(int id);
+
+    User updateUser(int id, String mail, String password, int age);
+
+    void deleteUser(int id);
 
 
 }

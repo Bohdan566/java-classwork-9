@@ -1,6 +1,7 @@
 package com.example.javaclasswork9in1.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @EqualsAndHashCode
-@ToString
+@ToString(exclude = "user")
 
 public class Profile {
 
@@ -24,8 +25,7 @@ public class Profile {
     private String avatar;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-
-
+    @JsonIgnore
     private User user;
 
     public Profile(String firstname, String lastname, int age, String avatar) {
@@ -35,11 +35,5 @@ public class Profile {
         this.avatar = avatar;
     }
 
-    public Profile(String firstname, String lastname, int age, String avatar, User user) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.age = age;
-        this.avatar = avatar;
-        this.user = user;
-    }
+
 }
